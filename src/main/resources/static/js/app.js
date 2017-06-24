@@ -6,15 +6,24 @@ $(document).ready(function () {
         if($("#namefile").val() == '' || $("#fileType").val() == '' ||
         		$("#fileOwner").val() == '' || $("#fileDescription").val() == '' ||
         		$("#file").val() == '' ){
-        	$("#result").text('Please enter the document details');
+        	$("#result").text('Please enter the document details : Document Name, Document Type, Document Auther and Upload The Document');
         	$("#result").css('color', 'red');
         }else{         	
         	fire_ajax_submit_upload();   
         }
+    });   
+    
+    $("#DocSearch").click(function (event) {
+        if($("#documentSearch").val() != null && $("#documentSearch").val().length > 3){
+        	fire_ajax_fileSearch($("#documentSearch").val());
+    	}else{
+        	fire_ajax_fileList();
+        }
     });
-    
-    
 
+    $("#reset").click(function (event) {
+          	fire_ajax_fileList();
+    });
 });
 
 function download(url) {    	
@@ -73,6 +82,40 @@ function fire_ajax_submit_upload() {
 }
 
 
+function fire_ajax_fileSearch(fileName) {
+	$.ajax({
+	    type: "GET",
+	    url: "/api/listFiles",
+	    //http://api.jquery.com/jQuery.ajax/
+	    //https://developer.mozilla.org/en-US/docs/Web/API/FormData/Using_FormData_Objects
+	    processData: false, //prevent jQuery from automatically transforming the data into a query string
+	    contentType: false,
+	    cache: false,
+	    timeout: 600000,
+	    success: function (response) {
+	    	if(response.length == 0){
+	    		$('#uploadedFiles').empty();
+	    	}else{	      
+	        var $ul = $('#uploadedFiles');
+	        $ul.empty();
+	        $.each(response, function(id, item){ 	        	
+	        	if(item.fileName == fileName){
+                $ul.append( '<tr><td>' + item.fileName + 
+		    		            		'</td><td> ' + item.fileOwner + 
+		    		            		'</td><td> '  + item.fileType + 
+		    		            		'</td><td><a href="/api/download/' + item.id + '">'+ item.fileOriginalName +'</a> </td>' + 
+		    		            		'<td><button type="button" Onclick=download("/api/delete/' + item.id + '")  class="btn btn-danger custom-width">Remove</button></td></tr>')
+	        }
+            })
+             $ul.append('');
+	    	}
+	    },
+	    error: function (e) {
+	        $("#uploadedFiles").text(e.responseText);
+	     }
+});
+}
+
 function fire_ajax_fileList() {
 	$.ajax({
 	    type: "GET",
@@ -89,13 +132,13 @@ function fire_ajax_fileList() {
 	    	}else{	      
 	        var $ul = $('#uploadedFiles');
 	        $ul.empty();
-	        $.each(response, function(id, item){            	
+	        $.each(response, function(id, item){ 	        	
                 $ul.append( '<tr><td>' + item.fileName + 
 		    		            		'</td><td> ' + item.fileOwner + 
 		    		            		'</td><td> '  + item.fileType + 
 		    		            		'</td><td><a href="/api/download/' + item.id + '">'+ item.fileOriginalName +'</a> </td>' + 
 		    		            		'<td><button type="button" Onclick=download("/api/delete/' + item.id + '")  class="btn btn-danger custom-width">Remove</button></td></tr>')
-            })
+	            })
              $ul.append('');
 	    	}
 	    },

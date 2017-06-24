@@ -62,7 +62,7 @@ html, body {
 					<div class="row">
 						<div class="form-group col-md-12">
 							<label class="col-md-2 control-lable" for="fileOwner">Document
-								Owner</label>
+								Auther</label>
 							<div class="col-md-7">
 								<input type="text" name="fileOwner" id="fileOwner" class="form-control input-sm" 
 	                            placeholder="Document Owner"/>
@@ -93,8 +93,22 @@ html, body {
 				<div class="formcontainer">
 					<div class="panel panel-default">
 						<!-- Default panel contents -->
-						<div class="panel-heading">
+						<div class="panel-heading">						
 							<span class="lead">List of Documents </span>
+							 
+	                         <div class="row">
+						<div class="form-group col-md-12">
+							<input type="submit" name="DocSearch" id="DocSearch" value="Search"
+									class="btn btn-primary btn-sm" />
+							<input type="reset" name="reset" id="reset" value="Reset"
+									class="btn btn-primary btn-sm" />		
+							<div class="col-md-7">
+								<input type="text" name="documentSearch" id="documentSearch" class="form-control input-sm" 
+	                            placeholder="Document Search" />
+							</div>
+						</div>
+					</div>   
+	                            
 						</div>
 						<div class="panel-body">
 							<div class="table-responsive">

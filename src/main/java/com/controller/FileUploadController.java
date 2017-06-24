@@ -1,16 +1,12 @@
 package com.controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +16,6 @@ import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -80,7 +75,7 @@ public class FileUploadController {
 	    
 	    @GetMapping("/api/listFiles")
 	     public Iterable<FileModel> listUploadedFiles() {
-	    	return  repository.findAll();	    	
+	  	    	return  repository.findAll();	    	
 	    }
 	    
 	    @GetMapping("/api/delete/{id}")
