@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Document Managment Server</title>
+<script type="text/javascript" src="webjars/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+<link href="css/bootstrap.css" rel="stylesheet" />
+<link href="css/app.css" rel="stylesheet" />
+<style>
+.my-drop-zone {
+	border: dotted 3px lightgray;
+}
+
+.nv-file-over {
+	border: dotted 3px red;
+} /* Default class applied to drop zones on over */
+.another-file-over-class {
+	border: dotted 3px green;
+}
+
+html, body {
+	height: 100%;
+}
+</style>
+
+</head>
+<body>
+	<div class="generic-container">
+		<div class="panel panel-default">
+			<!-- Default panel contents -->
+			<div class="panel-heading">
+				<span class="lead">Documents Management Application </span>
+			</div>
+			<div class="panel-body">
+
+				<div class="alert alert-success">
+					<span id="result"></span>
+				</div>
+				<form method="POST" enctype="multipart/form-data"
+					id="fileUploadForm" class="form-horizontal">
+					<div class="row">
+						<div class="form-group col-md-12">
+							<label class="col-md-2 control-lable" for="fileName">Document
+								Name</label>
+							<div class="col-md-7">
+								<input type="text" name="fileName" id="fileName" class="form-control input-sm" 
+	                            placeholder="Document Name" />
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-12">
+							<label class="col-md-2 control-lable" for="fileType">Document
+								Type</label>
+							<div class="col-md-7">
+								<input type="text" name="fileType" id="fileType" class="form-control input-sm" 
+	                            placeholder="Document Type"/>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-12">
+							<label class="col-md-2 control-lable" for="fileOwner">Document
+								Owner</label>
+							<div class="col-md-7">
+								<input type="text" name="fileOwner" id="fileOwner" class="form-control input-sm" 
+	                            placeholder="Document Owner"/>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-12">
+							<label class="col-md-2 control-lable" for="file">Upload
+								Document</label>
+							<div class="col-md-7">
+								<input type="file" name="file" id="file" class="form-control" 
+	                            placeholder="Upload Document"/>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-12">
+							<label class="col-md-2 control-lable" for="submit"></label>
+
+							<div class="col-md-7">
+								<input type="submit" name="submit" id="btnSubmit" value="Upload"
+									class="btn btn-primary btn-sm" />
+							</div>
+						</div>
+					</div>
+				</form>
+				<div class="formcontainer">
+					<div class="panel panel-default">
+						<!-- Default panel contents -->
+						<div class="panel-heading">
+							<span class="lead">List of Documents </span>
+						</div>
+						<div class="panel-body">
+							<div class="table-responsive">
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>File Name</th>
+											<th>File Owner</th>
+											<th>File Type</th>
+											<th>Download File</th>
+										</tr>
+									</thead>
+									<tbody id="uploadedFiles">
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
